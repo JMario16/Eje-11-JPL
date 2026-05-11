@@ -4,18 +4,18 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Datos de la mascota</h5>
-            <form>
-                <input type="hidden"/>
+            <!--form-->
+                <input type="hidden" [(ngModel)] = "mascota.id"/>
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
-                    <input type="text" class="form-control" aria-describedby="Nombre de la mascota">
+                    <input type="text" class="form-control" [(ngModel)] = "mascota.nombre" aria-describedby="Nombre de la mascota">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Edad</label>
-                    <input type="number" class="form-control" aria-describedby="Edad de la mascota">
+                    <input type="number" class="form-control" [(ngModel)] = "mascota.edad" aria-describedby="Edad de la mascota">
                 </div>
-                <button type="button" class="btn btn-success">Guardar</button>
-            </form>
+                <button type="button" (click)="guardar()" class="btn btn-success">{{ enEdicion ? 'Editar' : 'Guardar' }}</button>
+            <!--/form-->
         </div>
     </div>
 
@@ -30,18 +30,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Maya</td>
-                <td>5</td>
-                <td><button type="button" style="margin-right: 10px;" class="btn btn-info">Editar</button><button type="button" class="btn btn-danger">Eliminar</button></td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Solovino</td>
-                <td>8</td>
-                <td><button type="button" style="margin-right: 10px;" class="btn btn-info">Editar</button><button type="button" class="btn btn-danger">Eliminar</button></td>
-            </tr>
+            @for (mascota of mascotas; track mascota.id) {
+                <tr>
+                    <th scope="row">{{ mascota.id }}</th>
+                    <td>{{ mascota.nombre }}</td>
+                    <td>{{ mascota.edad }}</td>
+                    <td><button type="button" {click} style="margin-right: 10px;" class="btn btn-info">Editar</button><button type="button" class="btn btn-danger">Eliminar</button></td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

@@ -31,7 +31,14 @@ export class MascotaService {
     return this.mascotas;
   }
 
-  delete() {
+  update(mascotaUpdate: MascotaModel) {
+    const index = this.mascotas.findIndex((mascota) => mascota.id == mascotaUpdate.id);
 
+    // Reemplazar el contenido de la casilla 
+    this.mascotas[index] = mascotaUpdate;
+  }
+
+  delete(id: number) {
+    this.mascotas = this.mascotas.filter((mascota) => mascota.id != id);
   }
 }

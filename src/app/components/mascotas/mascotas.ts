@@ -32,15 +32,27 @@ export class Mascotas implements OnInit {
   }  
 
   guardar() {
-    this.mascotaService.create(this.mascota);
+    if (this.enEdicion) { // Editar mascota
+      this.mascotaService.update({...this.mascota});
+      this.enEdicion = false;
+    } else { // Guardar mascota
+      this.mascotaService.create({...this.mascota});
+    }
+
+    this.limpiar();
+  }
+
+  limpiar() {
+    this.mascota = {id: 0, nombre: "", edad: 0};
+  }
+
+  editar(mascotaActualizar: MascotaModel) {
+    this.enEdicion = true;
+    this.mascota = {...mascotaActualizar};
+  }
+
+  eliminar(id: number) {
+    this.mascotaService.delete(id);
     this.listar();
-  }
-
-  editar() {
-
-  }
-
-  eliminar() {
-
   }
 }

@@ -35,7 +35,10 @@
                     <th scope="row">{{ mascota.id }}</th>
                     <td>{{ mascota.nombre }}</td>
                     <td>{{ mascota.edad }}</td>
-                    <td><button type="button" {click} style="margin-right: 10px;" class="btn btn-info">Editar</button><button type="button" class="btn btn-danger">Eliminar</button></td>
+                    <td>
+                        <button type="button" style="margin-right: 10px;" class="btn btn-info" (click)="editar(mascota)">Editar</button>
+                        <button type="button" class="btn btn-danger" (click)="eliminar(mascota.id)">Eliminar</button>
+                    </td>
                 </tr>
             }
         </tbody>
